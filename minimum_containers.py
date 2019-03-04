@@ -10,7 +10,7 @@ try:
     containers_input = input('list of continers: ')
     containers =  [int(n) for n in containers_input.replace(' ','').split(',')]
 except Exception as e:
-    print('................invalid input...................!!')
+    print('................invalid input...................!!', str(e))
     sys.exit()
 
 
@@ -43,5 +43,5 @@ def get_containers(containers, load):
     return min_reqd_containers
 
 if __name__ == '__main__':
-    min_reqd_containers = get_containers(containers, load, min_containers_map)
+    min_reqd_containers = get_containers(containers, load)
     print('................min_reqd_containers: ', min_reqd_containers)
