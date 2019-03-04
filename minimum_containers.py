@@ -14,7 +14,16 @@ except Exception as e:
     sys.exit()
 
 
-def get_containers(containers, load, min_containers_map):
+def get_containers(containers, load):
+    """Returns minimum number of containers required for a load.
+    
+    Args:
+        containers: A list of non-negative integers.
+        load: An integer > 0
+    
+    Returns:
+        A list of intgers.
+    """
     # initially min_reqd_containers is set to max load.
     min_reqd_containers = [0]*load
     smallest_container = min(containers)
@@ -26,7 +35,7 @@ def get_containers(containers, load, min_containers_map):
         return min_containers_map[load]
     for i in [c for c in containers if c <= load ]:
         reqd_containers = [i]
-        reqd_containers.extend(get_containers(containers, load-i, min_containers_map))
+        reqd_containers.extend(get_containers(containers, load-i))
         if len(reqd_containers) < len(min_reqd_containers):
             min_reqd_containers = reqd_containers
             min_containers_map[load] = min_reqd_containers
